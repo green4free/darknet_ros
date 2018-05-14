@@ -476,7 +476,7 @@ void YoloObjectDetector::setupNetwork(char *cfgfile, char *weightfile, char *dat
 void YoloObjectDetector::yolo()
 {
   const auto wait_duration = std::chrono::milliseconds(2000);
-  while (!getImageStatus()) {
+   while (!getImageStatus()){
     printf("Waiting for image.\n");
     if (!isNodeRunning()) {
       return;
@@ -522,8 +522,11 @@ void YoloObjectDetector::yolo()
   }
 
   demoTime_ = what_time_is_it_now();
-
+  
+  ros::Rate loop_rate(0.2);
+  
   while (!demoDone_) {
+    loop_rate.sleep();
     buffIndex_ = (buffIndex_ + 1) % 3;
     fetch_thread = std::thread(&YoloObjectDetector::fetchInThread, this);
     detect_thread = std::thread(&YoloObjectDetector::detectInThread, this);
