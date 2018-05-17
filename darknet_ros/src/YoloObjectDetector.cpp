@@ -523,10 +523,10 @@ void YoloObjectDetector::yolo()
 
   demoTime_ = what_time_is_it_now();
   
-  ros::Rate loop_rate(0.2);
+  ros::Rate loop_rate(0.4);
   
   while (!demoDone_) {
-    loop_rate.sleep();
+    //loop_rate.sleep();
     buffIndex_ = (buffIndex_ + 1) % 3;
     fetch_thread = std::thread(&YoloObjectDetector::fetchInThread, this);
     detect_thread = std::thread(&YoloObjectDetector::detectInThread, this);
