@@ -80,7 +80,7 @@ yolo_model:
       - oven
       - toaster
       - sink
-      - door
+      - refrigerator
       - book
       - clock
       - vase
